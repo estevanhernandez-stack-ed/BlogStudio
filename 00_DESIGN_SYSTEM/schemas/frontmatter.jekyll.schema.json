@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/estevanhernandez-stack-ed/BlogStudio/schemas/frontmatter.jekyll.schema.json",
+  "title": "BlogStudio Jekyll Frontmatter",
+  "description": "Jekyll-specific extensions to the base frontmatter.",
+  "allOf": [
+    { "$ref": "frontmatter.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "layout": { "type": "string" },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "permalink": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "image": { "type": "string", "description": "Featured image path or URL" },
+        "comments": { "type": "boolean" },
+        "published": { "type": "boolean" }
+      }
+    }
+  ]
+}

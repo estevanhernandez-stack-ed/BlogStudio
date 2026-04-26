@@ -1,0 +1,49 @@
+{
+  "name": "blog-studio",
+  "version": "1.0.0",
+  "description": "Structured AI-assisted workspace template for short-form technical/dev blog posts with vibe-coding lean — write once, publish to markdown, Hugo, Ghost, Substack, and Jekyll.",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://github.com/estevanhernandez-stack-ed/BlogStudio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/estevanhernandez-stack-ed/BlogStudio.git"
+  },
+  "author": "626Labs",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:adapter": "node scripts/build.js --adapter",
+    "compile:tokens": "node scripts/compile-tokens.js",
+    "validate": "node scripts/validate-schemas.js",
+    "check:links": "linkinator dist/ --skip 'node_modules'",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#dist\"",
+    "export:portable": "node scripts/export-portable.js",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "gray-matter": "^4.0.3",
+    "husky": "^9.1.7",
+    "js-yaml": "^4.1.0",
+    "lint-staged": "^15.2.10",
+    "linkinator": "^7.0.0",
+    "markdown-it": "^14.1.0",
+    "markdownlint-cli2": "^0.22.1",
+    "remark-parse": "^11.0.0",
+    "remark-stringify": "^11.0.0",
+    "shiki": "^1.22.0",
+    "unified": "^11.0.5"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "lint-staged": {
+    "*.md": [
+      "markdownlint-cli2"
+    ],
+    "*.{yaml,yml,json}": [
+      "node scripts/validate-schemas.js"
+    ]
+  }
+}

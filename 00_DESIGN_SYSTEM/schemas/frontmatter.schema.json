@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/estevanhernandez-stack-ed/BlogStudio/schemas/frontmatter.schema.json",
+  "title": "BlogStudio Base Frontmatter",
+  "description": "Base fields required across all per-target frontmatter files. Per-adapter schemas extend this with target-specific fields.",
+  "type": "object",
+  "required": ["title", "date"],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "URL slug. Defaults to slugified title if omitted."
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date in YYYY-MM-DD"
+    },
+    "authors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Author byline(s). Single-author posts have one element; multi-author posts have multiple."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "description": {
+      "type": "string",
+      "description": "Short post description for SEO meta + post-list previews"
+    },
+    "draft": {
+      "type": "boolean",
+      "description": "If true, excluded from build outputs"
+    },
+    "series": {
+      "type": "string",
+      "description": "Series slug if this post is part of a series"
+    },
+    "series_order": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Position within the series (1-indexed)"
+    },
+    "canonical_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Original URL if this post was originally published elsewhere"
+    }
+  }
+}

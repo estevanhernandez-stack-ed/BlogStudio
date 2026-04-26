@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/estevanhernandez-stack-ed/BlogStudio/schemas/tokens.schema.json",
+  "title": "BlogStudio Design Tokens",
+  "description": "Canonical design tokens for BlogStudio. Compiled at build time into CSS + JSON for adapters to consume.",
+  "type": "object",
+  "required": ["version", "typography", "colors", "spacing", "code_blocks"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semver. Bumped when tokens change in ways downstream builds should pin against."
+    },
+    "typography": {
+      "type": "object",
+      "required": ["body_font", "heading_font", "code_font", "base_size", "line_height"],
+      "additionalProperties": false,
+      "properties": {
+        "body_font": { "type": "string" },
+        "heading_font": { "type": "string" },
+        "code_font": { "type": "string" },
+        "base_size": { "type": "string", "pattern": "^\\d+(\\.\\d+)?(pt|px|em|rem)$" },
+        "line_height": { "type": "number", "minimum": 1, "maximum": 3 }
+      }
+    },
+    "colors": {
+      "type": "object",
+      "required": ["text", "background", "accent", "link"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "background": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "link": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "code_background": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "code_foreground": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paragraph_above": { "type": "string" },
+        "section_above": { "type": "string" }
+      }
+    },
+    "code_blocks": {
+      "type": "object",
+      "required": ["syntax_theme"],
+      "additionalProperties": false,
+      "properties": {
+        "syntax_theme": {
+          "type": "string",
+          "description": "Shiki theme name (e.g., 'github-dark', 'github-light', 'dracula', 'one-dark-pro')"
+        },
+        "show_line_numbers": { "type": "boolean" },
+        "show_copy_button": { "type": "boolean" }
+      }
+    },
+    "callouts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["icon", "color", "background"],
+        "additionalProperties": false,
+        "properties": {
+          "icon": { "type": "string" },
+          "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+          "background": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+        }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logo_path": { "type": "string" },
+        "favicon_path": { "type": "string" }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "default_og_image": { "type": "string" },
+        "site_name": { "type": "string" },
+        "twitter_handle": { "type": "string" }
+      }
+    }
+  }
+}

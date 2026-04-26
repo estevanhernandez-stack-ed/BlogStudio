@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/estevanhernandez-stack-ed/BlogStudio/schemas/media.schema.json",
+  "title": "BlogStudio Media Manifest",
+  "description": "Per-post media.yaml declaring an audio or video resource for podcast/screencast posts.",
+  "type": "object",
+  "required": ["type", "url", "duration_seconds"],
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["audio", "video"]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "External hosting URL. Media files are NOT stored in the repo."
+    },
+    "duration_seconds": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Duration in seconds; used for the duration label across adapters"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Thumbnail image URL (often required for video embeds)"
+    },
+    "transcript_path": {
+      "type": "string",
+      "description": "Path to transcript.md relative to the post directory. Adapters that don't support native transcripts will append/link this."
+    },
+    "host": {
+      "type": "string",
+      "description": "Hosting platform (e.g., 'anchor.fm', 'youtube', 'vimeo'). Adapters may use this to pick the right embed shortcode."
+    },
+    "embed_options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "autoplay": { "type": "boolean" },
+        "show_controls": { "type": "boolean" },
+        "start_seconds": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/estevanhernandez-stack-ed/BlogStudio/schemas/frontmatter.substack.schema.json",
+  "title": "BlogStudio Substack Frontmatter",
+  "description": "Substack-specific extensions. Substack styling is mostly locked; this captures what controls remain.",
+  "allOf": [
+    { "$ref": "frontmatter.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "subtitle": { "type": "string", "description": "Substack subtitle (short subhead under title)" },
+        "audience": {
+          "type": "string",
+          "enum": ["everyone", "free_subscribers", "paying_subscribers", "founding_members"]
+        },
+        "send_email": {
+          "type": "boolean",
+          "description": "Whether this post should be emailed (vs. only published to web)"
+        },
+        "section": { "type": "string", "description": "Substack section/category" }
+      }
+    }
+  ]
+}

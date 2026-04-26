@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/estevanhernandez-stack-ed/BlogStudio/schemas/frontmatter.hugo.schema.json",
+  "title": "BlogStudio Hugo Frontmatter",
+  "description": "Hugo-specific extensions to the base frontmatter.",
+  "allOf": [
+    { "$ref": "frontmatter.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "weight": {
+          "type": "integer",
+          "description": "Hugo weight for ordering"
+        },
+        "type": {
+          "type": "string",
+          "description": "Hugo content type (e.g., 'post', 'page')"
+        },
+        "layout": {
+          "type": "string",
+          "description": "Hugo layout override"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Hugo summary override"
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hugo URL aliases (redirects)"
+        }
+      }
+    }
+  ]
+}

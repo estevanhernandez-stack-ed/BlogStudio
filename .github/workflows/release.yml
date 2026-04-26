@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: Build + attach example dist archive
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Hugo Extended
+        run: |
+          ARCH=$(dpkg --print-architecture)
+          HUGO_VERSION="0.140.2"
+          curl -fsSL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${ARCH}.deb" -o /tmp/hugo.deb
+          sudo dpkg -i /tmp/hugo.deb
+
+      - name: Compile tokens
+        run: npm run compile:tokens
+
+      - name: Build example post
+        run: |
+          if [ -f "scripts/build.js" ] && [ -d "examples/single-post" ]; then
+            cd examples/single-post && npm run build
+          fi
+
+      - name: Archive built outputs
+        run: |
+          if [ -d "examples/single-post/dist" ]; then
+            cd examples/single-post && tar -czf example-dist.tar.gz dist/
+          fi
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            examples/single-post/example-dist.tar.gz

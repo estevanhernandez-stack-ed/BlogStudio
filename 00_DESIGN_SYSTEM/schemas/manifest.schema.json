@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/estevanhernandez-stack-ed/BlogStudio/schemas/manifest.schema.json",
+  "title": "BlogStudio Build Manifest",
+  "description": "Audit trail written next to each adapter's output. Verifies exact reproducibility for the post.",
+  "type": "object",
+  "required": ["built_at", "git_commit", "adapter", "design_system_version", "tool_versions", "source_files", "source_hashes"],
+  "additionalProperties": false,
+  "properties": {
+    "built_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "git_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$|^[0-9a-f]{7,12}$|^uncommitted$"
+    },
+    "git_dirty": {
+      "type": "boolean"
+    },
+    "adapter": {
+      "type": "string",
+      "description": "Adapter name (matches adapters/<name>.js)"
+    },
+    "design_system_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "post_slug": { "type": "string" },
+    "source_files": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "body": { "type": "string" },
+        "frontmatter": { "type": "string" },
+        "media": { "type": "string" },
+        "transcript": { "type": "string" }
+      }
+    },
+    "source_hashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      }
+    },
+    "tool_versions": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "assets_referenced": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Asset paths referenced by the post (for upload tracking on Ghost/Substack)"
+    }
+  }
+}

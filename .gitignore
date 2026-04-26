@@ -1,0 +1,43 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+.idea/
+*.swp
+*.swo
+
+# Build outputs (generated)
+dist/
+00_DESIGN_SYSTEM/compiled/
+
+# Hugo build cache (if previewing locally)
+.hugo_build.lock
+public/
+resources/_gen/
+
+# Jekyll build cache
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Devcontainer build cache
+.devcontainer/build/

@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Lint + schema validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Markdown lint
+        run: npm run lint:md
+
+      - name: Compile design tokens
+        run: npm run compile:tokens
+
+      - name: Schema validation
+        run: npm run validate
+
+  build-smoke-test:
+    name: Build example post (smoke test)
+    runs-on: ubuntu-latest
+    # This job runs after the build pipeline + adapters land. Until then,
+    # it reports gracefully when scripts/build.js is missing.
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build example post for all adapters
+        run: |
+          if [ -f "scripts/build.js" ] && [ -d "examples/single-post" ]; then
+            cd examples/single-post && npm run build
+          else
+            echo "Build script or example fixture not yet present. Skipping smoke test."
+          fi
+        continue-on-error: true
+
+  link-check:
+    name: Internal link check (dist/)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run check:links
+        continue-on-error: true

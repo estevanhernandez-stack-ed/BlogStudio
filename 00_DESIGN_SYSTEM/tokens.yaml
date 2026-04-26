@@ -1,0 +1,57 @@
+# BlogStudio Design Tokens
+# Canonical source. Compiled at build time into:
+#   compiled/tokens.css   — CSS custom properties + Shiki theme classes (consumed by Hugo, Jekyll, Ghost adapters)
+#   compiled/tokens.json  — Structured form (consumed by all adapters)
+#
+# Edit this file to customize your blog's visual identity.
+# Run `npm run compile:tokens` to regenerate compiled forms.
+# The version field is semver — bump when changes affect downstream pinning.
+
+version: "1.0.0"
+
+typography:
+  body_font: "Inter"
+  heading_font: "Inter"
+  code_font: "JetBrains Mono"
+  base_size: "16px"
+  line_height: 1.6
+
+colors:
+  text: "#0f172a"
+  background: "#ffffff"
+  accent: "#7c3aed"
+  link: "#6d28d9"
+  code_background: "#1e293b"
+  code_foreground: "#e2e8f0"
+
+spacing:
+  paragraph_above: "1em"
+  section_above: "2em"
+
+code_blocks:
+  syntax_theme: "github-dark"   # Any Shiki theme: github-light, dracula, one-dark-pro, nord, etc.
+  show_line_numbers: false
+  show_copy_button: true
+
+callouts:
+  info:
+    icon: "ℹ"
+    color: "#0284c7"
+    background: "#e0f2fe"
+  warning:
+    icon: "⚠"
+    color: "#d97706"
+    background: "#fef3c7"
+  danger:
+    icon: "✖"
+    color: "#dc2626"
+    background: "#fee2e2"
+
+brand:
+  logo_path: "03_ASSETS/_brand/logo.svg"
+  favicon_path: "03_ASSETS/_brand/favicon.png"
+
+seo:
+  default_og_image: "03_ASSETS/_brand/og-default.png"
+  site_name: ""
+  twitter_handle: ""

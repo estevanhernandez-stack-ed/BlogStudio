@@ -1,0 +1,8 @@
+type: video
+url: "https://example.com/screencasts/building-a-plugin-live.mp4"
+duration_seconds: 1320
+thumbnail_url: "https://example.com/screencasts/building-a-plugin-live-thumb.png"
+transcript_path: "transcript.md"
+host: "self-hosted"
+embed_options:
+  show_controls: true
