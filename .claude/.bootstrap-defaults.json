@@ -1,0 +1,5 @@
+{
+  "adapters": ["markdown", "hugo", "substack"],
+  "baseUrl": "https://blog.626labs.dev",
+  "authors": ["626 Labs"]
+}

@@ -1,8 +1,8 @@
-# [YOUR BLOG TITLE]
+# Field Notes
 
 > Forked from [BlogStudio](https://github.com/estevanhernandez-stack-ed/BlogStudio) — a structured AI-assisted workspace template for short-form technical/dev blogging with a vibe-coding / AI-agent lean. Run `/bootstrap` from inside Claude Code to customize this template for your blog.
 
-A workspace for **[YOUR BLOG TITLE]**, by **[YOUR NAME]**.
+A workspace for **Field Notes**, by **626 Labs**.
 
 ## Getting Started
 
